@@ -1,3 +1,4 @@
+import Header from '@/Header';
 import type { ApiResponse, User } from '@repo/types';
 import { useEffect, useState } from 'react';
 
@@ -22,7 +23,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-4">
-      <h1 className="text-4xl font-bold text-blue-600 mb-8">WebApp Monorepo</h1>
+      <Header />
 
       <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-md">
         <h2 className="text-2xl font-semibold mb-4 text-gray-800">Users from Mock API</h2>
