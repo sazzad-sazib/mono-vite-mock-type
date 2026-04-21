@@ -9,3 +9,8 @@ pre-push:
   commands:
     build-webapp:
       run: pnpm --filter webapp build
+
+commit-msg:
+  commands:
+    commitlint:
+      run: pnpm commitlint --edit {1}
