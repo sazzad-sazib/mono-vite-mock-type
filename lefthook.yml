@@ -1,0 +1,11 @@
+pre-commit:
+  parallel: true
+  commands:
+    biome:
+      glob: "*.{js,ts,cjs,mjs,d.cts,d.mts,jsx,tsx,json,jsonc}"
+      run: pnpm biome check --no-errors-on-unmatched --files-ignore-unknown=true --colors=off {staged_files}
+
+pre-push:
+  commands:
+    build-webapp:
+      run: pnpm --filter webapp build

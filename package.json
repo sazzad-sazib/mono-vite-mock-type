@@ -1,0 +1,17 @@
+{
+  "name": "boilerplate-vite-monorepo",
+  "private": true,
+  "scripts": {
+    "prepare": "lefthook install",
+    "dev": "concurrently \"pnpm --filter webapp dev\" \"pnpm --filter mock-api dev\"",
+    "build": "pnpm -r build",
+    "lint": "biome check .",
+    "format": "biome format --write ."
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.7.0",
+    "concurrently": "^8.2.2",
+    "lefthook": "^1.6.0",
+    "typescript": "^5.6.0"
+  }
+}
