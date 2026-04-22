@@ -1,5 +1,5 @@
 # Build Environment
-FROM node:22-alpine AS builder
+FROM node:24-alpine AS builder
 
 # Ensure reliable package paths
 WORKDIR /app
@@ -14,7 +14,7 @@ COPY packages/types/package.json ./packages/types/
 # Note: Add COPY instructions for other internal monorepo packages here if they expand
 
 # Install dependencies using freezing
-RUN pnpm install --frozen-lockfile
+RUN pnpm install --frozen-lockfile  --ignore-scripts
 
 # Copy the entire workspace code
 COPY . .
