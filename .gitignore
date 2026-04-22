@@ -107,3 +107,6 @@ dist-ssr/
 
 # Monorepo specific
 .pnpm-store
+
+# TanStack Router generated files
+routeTree.gen.ts
