@@ -12,7 +12,7 @@ import { useMemo } from 'react';
 export const useAPIClient = () => {
   return useMemo(
     () => ({
-      ...userService(axiosInstance),
+      user: userService(axiosInstance),
       // add more services here as you grow:
       // ...productService(axiosInstance),
       // ...authService(axiosInstance),

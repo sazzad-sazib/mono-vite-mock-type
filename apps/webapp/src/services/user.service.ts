@@ -15,27 +15,27 @@ const toUser = (u: JPUser): User => ({
 });
 
 export const userService = (client: AxiosInstance) => ({
-  getUsers: async (): Promise<User[]> => {
+  filter: async (): Promise<User[]> => {
     const { data } = await client.get<JPUser[]>('/users');
     return data.map(toUser);
   },
 
-  getUser: async (id: string): Promise<User> => {
+  get: async (id: string): Promise<User> => {
     const { data } = await client.get<JPUser>(`/users/${id}`);
     return toUser(data);
   },
 
-  createUser: async (payload: Omit<User, 'id'>): Promise<User> => {
+  create: async (payload: Omit<User, 'id'>): Promise<User> => {
     const { data } = await client.post<JPUser>('/users', payload);
     return toUser(data);
   },
 
-  updateUser: async (id: string, payload: Partial<Omit<User, 'id'>>): Promise<User> => {
+  update: async (id: string, payload: Partial<Omit<User, 'id'>>): Promise<User> => {
     const { data } = await client.patch<JPUser>(`/users/${id}`, payload);
     return toUser(data);
   },
 
-  deleteUser: async (id: string): Promise<void> => {
+  delete: async (id: string): Promise<void> => {
     await client.delete(`/users/${id}`);
   },
 });

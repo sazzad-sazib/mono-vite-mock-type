@@ -17,7 +17,7 @@ export const useUsers = () => {
 
   return useQuery({
     queryKey: userKeys.all,
-    queryFn: () => apiClient.getUsers(),
+    queryFn: () => apiClient.user.filter(),
   });
 };
 
@@ -27,7 +27,7 @@ export const useUser = (id: string) => {
 
   return useQuery({
     queryKey: userKeys.detail(id),
-    queryFn: () => apiClient.getUser(id),
+    queryFn: () => apiClient.user.get(id),
     enabled: Boolean(id),
   });
 };
@@ -38,7 +38,7 @@ export const useCreateUser = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (payload: Omit<User, 'id'>) => apiClient.createUser(payload),
+    mutationFn: (payload: Omit<User, 'id'>) => apiClient.user.create(payload),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: userKeys.all });
     },
@@ -51,7 +51,7 @@ export const useUpdateUser = (id: string) => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (payload: Partial<Omit<User, 'id'>>) => apiClient.updateUser(id, payload),
+    mutationFn: (payload: Partial<Omit<User, 'id'>>) => apiClient.user.update(id, payload),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: userKeys.all });
       queryClient.invalidateQueries({ queryKey: userKeys.detail(id) });
@@ -65,7 +65,7 @@ export const useDeleteUser = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (id: string) => apiClient.deleteUser(id),
+    mutationFn: (id: string) => apiClient.user.delete(id),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: userKeys.all });
     },
